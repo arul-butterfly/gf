@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Universe 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        <!-- Add your music file here -->
+    </audio>
+
+    <!-- Music Toggle Button (Fixed) -->
+    <button id="musicToggle" class="music-toggle">
+        <span class="music-icon">🎵</span>
+    </button>
+
+    <!-- Navigation Bar (Hidden on home page) -->
+    <nav id="navbar" class="navbar hidden">
+        <div class="nav-container">
+            <button class="nav-btn" onclick="showPage('home')">🏠 Home</button>
+            <button class="nav-btn" onclick="showPage('games')">🎮 Games</button>
+            <button class="nav-btn" onclick="showPage('story')">📖 Story</button>
+            <button class="nav-btn" onclick="showPage('surprise')">🎁 Surprise</button>
+            <button class="nav-btn" onclick="showPage('memes')">😂 Memes</button>
+            <button class="nav-btn" onclick="showPage('chat')">💬 Chat</button>
+            <button class="nav-btn" onclick="showPage('daily')">✨ Daily</button>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+        <div class="floating-hearts"></div>
+        <div class="home-content">
+            <h1 class="animated-title">Welcome to <span class="highlight" id="herName">Hasni</span>'s Universe 💫</h1>
+            <p class="subtitle">A special place created just for you ❤️</p>
+            <button class="cta-button" onclick="enterWorld()">ENTER MY WORLD ❤️</button>
+        </div>
+    </section>
+
+    <!-- GAME ZONE PAGE -->
+    <section id="games" class="page">
+        <div class="page-content">
+            <h1 class="page-title">🎮 Game Zone 🎮</h1>
+            <div class="game-grid">
+                <div class="game-card" onclick="showGame('loveQuiz')">
+                    <div class="game-icon">💕</div>
+                    <h3>Love Quiz</h3>
+                    <p>Test your love knowledge!</p>
+                </div>
+                <div class="game-card" onclick="showGame('memoryGame')">
+                    <div class="game-icon">🃏</div>
+                    <h3>Memory Match</h3>
+                    <p>Find the matching pairs!</p>
+                </div>
+                <div class="game-card" onclick="showGame('catchHeart')">
+                    <div class="game-icon">💖</div>
+                    <h3>Catch Hearts</h3>
+                    <p>Catch falling hearts!</p>
+                </div>
+                <div class="game-card" onclick="showGame('loveWheel')">
+                    <div class="game-icon">🎡</div>
+                    <h3>Love Wheel</h3>
+                    <p>Spin for surprises!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOVE QUIZ GAME -->
+    <section id="loveQuiz" class="page game-page">
+        <div class="page-content">
+            <button class="back-btn" onclick="showPage('games')">← Back</button>
+            <h1 class="page-title">💕 Love Quiz 💕</h1>
+            <div id="quizContainer" class="quiz-container">
+                <div id="quizQuestion" class="quiz-question"></div>
+                <div id="quizOptions" class="quiz-options"></div>
+                <div id="quizResult" class="quiz-result hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMORY GAME -->
+    <section id="memoryGame" class="page game-page">
+        <div class="page-content">
+            <button class="back-btn" onclick="showPage('games')">← Back</button>
+            <h1 class="page-title">🃏 Memory Match 🃏</h1>
+            <div class="game-stats">
+                <span>Moves: <strong id="moves">0</strong></span>
+                <span>Matches: <strong id="matches">0</strong></span>
+            </div>
+            <div id="memoryBoard" class="memory-board"></div>
+            <div id="memoryWin" class="memory-win hidden">
+                <h2>🎉 You Won! 🎉</h2>
+                <p>Amazing memory! Surprise unlocked! 💝</p>
+                <button class="cta-button" onclick="unlockSurprise()">Claim Reward</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATCH HEART GAME -->
+    <section id="catchHeart" class="page game-page">
+        <div class="page-content">
+            <button class="back-btn" onclick="showPage('games')">← Back</button>
+            <h1 class="page-title">💖 Catch Hearts 💖</h1>
+            <div class="game-stats">
+                <span>Score: <strong id="heartScore">0</strong></span>
+                <span>Time: <strong id="heartTimer">30</strong>s</span>
+            </div>
+            <div id="catchGameArea" class="catch-game-area"></div>
+            <button id="startCatchGame" class="cta-button" onclick="startCatchGame()">Start Game</button>
+            <div id="catchResult" class="catch-result hidden"></div>
+        </div>
+    </section>
+
+    <!-- LOVE WHEEL GAME -->
+    <section id="loveWheel" class="page game-page">
+        <div class="page-content">
+            <button class="back-btn" onclick="showPage('games')">← Back</button>
+            <h1 class="page-title">🎡 Spin the Love Wheel 🎡</h1>
+            <div class="wheel-container">
+                <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                <div class="wheel-pointer">▼</div>
+            </div>
+            <button id="spinBtn" class="cta-button" onclick="spinWheel()">SPIN THE WHEEL! 🎯</button>
+            <div id="wheelResult" class="wheel-result"></div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE STORY PAGE -->
+    <section id="story" class="page">
+        <div class="page-content">
+            <h1 class="page-title">📖 Our Love Story 📖</h1>
+            <div class="story-container">
+                <div id="storyText" class="story-text"></div>
+                <div id="storyChoices" class="story-choices"></div>
+                <button id="restartStory" class="cta-button hidden" onclick="startStory()">Start Again 🔄</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SURPRISE UNLOCK ROOM -->
+    <section id="surprise" class="page">
+        <div class="page-content">
+            <h1 class="page-title">🎁 Surprise Room 🎁</h1>
+            <div id="surpriseLocked" class="surprise-locked">
+                <div class="lock-icon">🔒</div>
+                <h2>This room is locked!</h2>
+                <p>Complete a game or enter the secret code to unlock...</p>
+                <input type="text" id="secretCode" placeholder="Enter secret code..." class="secret-input">
+                <button class="cta-button" onclick="checkSecretCode()">Unlock 🔓</button>
+            </div>
+            <div id="surpriseUnlocked" class="surprise-unlocked hidden">
+                <div class="confetti-container"></div>
+                <h2 class="love-title">💝 For My Special Someone 💝</h2>
+                <div class="love-letter">
+                    <p>My Dearest,</p>
+                    <p>Every moment with you feels like magic. You light up my world in ways I never knew were possible. This little universe is just a tiny reflection of how much you mean to me.</p>
+                    <p>Thank you for being you, for your smile, your laugh, and for making every day an adventure. You are my happiness, my inspiration, and my forever.</p>
+                    <p>I love you more than words can express. 💕</p>
+                    <p class="signature">Forever Yours ❤️</p>
+                </div>
+                <div class="image-slideshow">
+                    <div class="slideshow-container">
+                        <div class="slide active">
+                            <div class="placeholder-image">📷 Memory 1</div>
+                            <p class="slide-caption">Our first adventure together</p>
+                        </div>
+                        <div class="slide">
+                            <div class="placeholder-image">📷 Memory 2</div>
+                            <p class="slide-caption">That perfect sunset</p>
+                        </div>
+                        <div class="slide">
+                            <div class="placeholder-image">📷 Memory 3</div>
+                            <p class="slide-caption">Making memories every day</p>
+                        </div>
+                    </div>
+                    <button class="slide-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="slide-btn next" onclick="changeSlide(1)">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUN & MEME PAGE -->
+    <section id="memes" class="page">
+        <div class="page-content">
+            <h1 class="page-title">😂 Our Funny Moments 😂</h1>
+            <div class="meme-grid">
+                <button class="meme-btn" onclick="showMeme('miss')">
+                    <span class="meme-emoji">😌</span>
+                    <span>When you miss me</span>
+                </button>
+                <button class="meme-btn" onclick="showMeme('reply')">
+                    <span class="meme-emoji">😂</span>
+                    <span>When I don't reply fast</span>
+                </button>
+                <button class="meme-btn" onclick="showMeme('fight')">
+                    <span class="meme-emoji">😤</span>
+                    <span>When we "fight"</span>
+                </button>
+                <button class="meme-btn" onclick="showMeme('food')">
+                    <span class="meme-emoji">🍕</span>
+                    <span>When we see food</span>
+                </button>
+                <button class="meme-btn" onclick="showMeme('cute')">
+                    <span class="meme-emoji">🥰</span>
+                    <span>When you're being cute</span>
+                </button>
+                <button class="meme-btn" onclick="showMeme('sleepy')">
+                    <span class="meme-emoji">😴</span>
+                    <span>When you're sleepy</span>
+                </button>
+            </div>
+            <div id="memeDisplay" class="meme-display hidden">
+                <div class="meme-content">
+                    <button class="close-btn" onclick="closeMeme()">✕</button>
+                    <div class="meme-placeholder" id="memeImage">🖼️ Meme GIF Here</div>
+                    <p id="memeText"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAKE CHAT PAGE -->
+    <section id="chat" class="page">
+        <div class="page-content">
+            <h1 class="page-title">💬 Our Chat 💬</h1>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">💕</div>
+                    <div class="chat-info">
+                        <h3 id="chatName">My Love</h3>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="typing-indicator hidden" id="typingIndicator">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="chat-choices" id="chatChoices"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAILY FUN PAGE -->
+    <section id="daily" class="page">
+        <div class="page-content">
+            <h1 class="page-title">✨ Daily Love ✨</h1>
+            <div class="daily-grid">
+                <div class="daily-card">
+                    <h3>💝 Today's Compliment</h3>
+                    <p id="dailyCompliment" class="daily-text"></p>
+                    <button class="cta-button" onclick="generateCompliment()">Get New Compliment</button>
+                </div>
+                <div class="daily-card">
+                    <h3>❓ Question of the Day</h3>
+                    <p id="dailyQuestion" class="daily-text"></p>
+                    <button class="cta-button" onclick="generateQuestion()">New Question</button>
+                </div>
+                <div class="daily-card">
+                    <h3>💭 Random Memory</h3>
+                    <p id="dailyMemory" class="daily-text"></p>
+                    <button class="cta-button" onclick="generateMemory()">New Memory</button>
+                </div>
+                <div class="daily-card">
+                    <h3>💌 Love Quote</h3>
+                    <p id="dailyQuote" class="daily-text"></p>
+                    <button class="cta-button" onclick="generateQuote()">New Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
