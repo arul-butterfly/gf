@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Digital World 🌍</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Floating Navigation & Progress -->
+    <div class="floating-nav" id="floatingNav">
+        <button class="nav-home-btn" onclick="goToWorldMap()" title="World Map">🌍</button>
+        <div class="progress-indicator">
+            <div class="progress-text" id="progressText">0% Explored</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Toggle Button -->
+    <button class="sound-toggle" id="soundToggle" onclick="toggleGlobalSound()">
+        <span id="soundIcon">🔇</span>
+    </button>
+
+    <!-- ═══════════════════════════════════════════════════════
+         WORLD MAP - Main Navigation Hub
+         ═══════════════════════════════════════════════════════ -->
+    <section id="worldMap" class="world-section active">
+        <div class="world-map-container">
+            <h1 class="world-title">Hasni's Digital World 🌍</h1>
+            <p class="world-subtitle">A place made just for you. Explore each corner.</p>
+            
+            <div class="world-grid">
+                <!-- Welcome Island -->
+                <div class="world-area welcome-area" onclick="navigateToSection('welcomeIsland')" data-area="welcome">
+                    <div class="area-icon">🌅</div>
+                    <h3 class="area-title">Welcome Island</h3>
+                    <p class="area-desc">Where it all begins</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Memory City -->
+                <div class="world-area memory-area" onclick="navigateToSection('memoryCity')" data-area="memory">
+                    <div class="area-icon">🏙️</div>
+                    <h3 class="area-title">Memory City</h3>
+                    <p class="area-desc">Stories we've collected</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Feelings Forest -->
+                <div class="world-area feelings-area" onclick="navigateToSection('feelingsForest')" data-area="feelings">
+                    <div class="area-icon">🌿</div>
+                    <h3 class="area-title">Feelings Forest</h3>
+                    <p class="area-desc">Express your heart</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Dream Sky -->
+                <div class="world-area dream-area" onclick="navigateToSection('dreamSky')" data-area="dream">
+                    <div class="area-icon">✨</div>
+                    <h3 class="area-title">Dream Sky</h3>
+                    <p class="area-desc">Your wishes & hopes</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Calm Ocean -->
+                <div class="world-area calm-area" onclick="navigateToSection('calmOcean')" data-area="calm">
+                    <div class="area-icon">🌊</div>
+                    <h3 class="area-title">Calm Ocean</h3>
+                    <p class="area-desc">Find your peace</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Fun Corner -->
+                <div class="world-area fun-area" onclick="navigateToSection('funCorner')" data-area="fun">
+                    <div class="area-icon">🎈</div>
+                    <h3 class="area-title">Fun Corner</h3>
+                    <p class="area-desc">Games & joy</p>
+                    <div class="area-glow"></div>
+                </div>
+
+                <!-- Secret Vault -->
+                <div class="world-area secret-area" onclick="checkSecretVault()" data-area="secret" id="secretVaultEntry">
+                    <div class="area-icon" id="vaultIcon">🔒</div>
+                    <h3 class="area-title">Secret Vault</h3>
+                    <p class="area-desc" id="vaultDesc">Unlock by exploring</p>
+                    <div class="area-glow"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ambient Background Elements -->
+        <div class="floating-particles"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         1️⃣ WELCOME ISLAND 🌅
+         ═══════════════════════════════════════════════════════ -->
+    <section id="welcomeIsland" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content welcome-content">
+            <div class="welcome-header">
+                <h1 class="section-title animate-in">Welcome to Your World</h1>
+                <div class="live-datetime">
+                    <div class="current-date" id="welcomeDate"></div>
+                    <div class="current-time" id="welcomeTime"></div>
+                </div>
+            </div>
+
+            <div class="welcome-message animate-in delay-1">
+                <p class="welcome-text">
+                    Hi <span class="highlight" id="userName">Beautiful</span>, 🌷
+                </p>
+                <p class="welcome-text">
+                    I created this world for you. Each corner holds something special — 
+                    memories, dreams, feelings, and moments of peace. This is your space 
+                    to explore, reflect, and simply be yourself.
+                </p>
+                <p class="welcome-text">
+                    Take your time. There's no rush. Every area is waiting for you.
+                </p>
+            </div>
+
+            <div class="welcome-quote animate-in delay-2">
+                <blockquote id="welcomeQuote">
+                    "You are exactly where you need to be right now."
+                </blockquote>
+            </div>
+
+            <button class="primary-btn animate-in delay-3" onclick="goToWorldMap()">
+                Explore the World 🗺️
+            </button>
+        </div>
+
+        <div class="ambient-background">
+            <div class="ambient-orb orb-1"></div>
+            <div class="ambient-orb orb-2"></div>
+            <div class="ambient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         2️⃣ MEMORY CITY 🏙️
+         ═══════════════════════════════════════════════════════ -->
+    <section id="memoryCity" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content memory-content">
+            <h1 class="section-title">Memory City 🏙️</h1>
+            <p class="section-subtitle">Our story, one moment at a time</p>
+
+            <!-- Timeline -->
+            <div class="memory-timeline">
+                <div class="timeline-item" onclick="openMemory(0)">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">A special day</div>
+                        <h3>The Beginning</h3>
+                        <p>Where our story started...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" onclick="openMemory(1)">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">An unforgettable moment</div>
+                        <h3>First Connection</h3>
+                        <p>When everything clicked...</p>
+                    </div>
+                </div>
+
+                <div src="./image/" class="timeline-item" onclick="openMemory(2)">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">A day of joy</div>
+                        <h3>Laughter & Light</h3>
+                        <p>Pure happiness together...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" onclick="openMemory(3)">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">A turning point</div>
+                        <h3>Growing Closer</h3>
+                        <p>Deepening bonds...</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" onclick="openMemory(4)">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">Today & always</div>
+                        <h3>Still Writing</h3>
+                        <p>Our story continues...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+           <div class="photo-grid">
+    <div class="photo-card" style="--delay: 0s">
+        <img src="./image/1.jpg" alt="Memory 1" class="photo-img">
+        <p class="photo-caption">A captured moment</p>
+    </div>
+
+    <div class="photo-card" style="--delay: 0.1s">
+        <img src="./image/2.jpg" alt="Memory 2" class="photo-img">
+        <p class="photo-caption">A beautiful day</p>
+    </div>
+
+    <div class="photo-card" style="--delay: 0.2s">
+        <img src="./image/3.jpg" alt="Memory 3" class="photo-img">
+        <p class="photo-caption">Together</p>
+    </div>
+
+    <div class="photo-card" style="--delay: 0.3s">
+        <img src="./image/4.jpg" alt="Memory 4" class="photo-img">
+        <p class="photo-caption">Smiling faces</p>
+    </div>
+</div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         3️⃣ FEELINGS FOREST 🌿
+         ═══════════════════════════════════════════════════════ -->
+    <section id="feelingsForest" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content feelings-content">
+            <h1 class="section-title">Feelings Forest 🌿</h1>
+            <p class="section-subtitle">How are you feeling today?</p>
+
+            <div class="mood-selector">
+                <button class="mood-btn" data-mood="happy" onclick="selectMood('happy')">
+                    <span class="mood-emoji">😊</span>
+                    <span class="mood-label">Happy</span>
+                </button>
+                <button class="mood-btn" data-mood="calm" onclick="selectMood('calm')">
+                    <span class="mood-emoji">😌</span>
+                    <span class="mood-label">Calm</span>
+                </button>
+                <button class="mood-btn" data-mood="excited" onclick="selectMood('excited')">
+                    <span class="mood-emoji">🤩</span>
+                    <span class="mood-label">Excited</span>
+                </button>
+                <button class="mood-btn" data-mood="thoughtful" onclick="selectMood('thoughtful')">
+                    <span class="mood-emoji">🤔</span>
+                    <span class="mood-label">Thoughtful</span>
+                </button>
+                <button class="mood-btn" data-mood="tired" onclick="selectMood('tired')">
+                    <span class="mood-emoji">😴</span>
+                    <span class="mood-label">Tired</span>
+                </button>
+                <button class="mood-btn" data-mood="sad" onclick="selectMood('sad')">
+                    <span class="mood-emoji">😔</span>
+                    <span class="mood-label">Sad</span>
+                </button>
+            </div>
+
+            <div class="mood-response" id="moodResponse">
+                <div class="mood-message" id="moodMessage"></div>
+                <button class="secondary-btn" id="shareMoodBtn" style="display: none;">
+                    Share This Feeling 💌
+                </button>
+            </div>
+
+            <div class="feelings-ambient">
+                <div class="leaf leaf-1">🍃</div>
+                <div class="leaf leaf-2">🍃</div>
+                <div class="leaf leaf-3">🍃</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         4️⃣ DREAM SKY ✨
+         ═══════════════════════════════════════════════════════ -->
+    <section id="dreamSky" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content dream-content">
+            <h1 class="section-title">Dream Sky ✨</h1>
+            <p class="section-subtitle">Your wishes written in the stars</p>
+
+            <div class="dream-input-area">
+                <button class="primary-btn" onclick="showDreamInput()">
+                    ✨ Add a New Dream
+                </button>
+                
+                <div class="dream-form" id="dreamForm">
+                    <textarea 
+                        id="dreamTextarea" 
+                        placeholder="What do you dream of...?"
+                        maxlength="200"
+                    ></textarea>
+                    <div class="dream-form-actions">
+                        <button class="primary-btn" onclick="saveDream()">Save Dream</button>
+                        <button class="secondary-btn" onclick="hideDreamInput()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dream-sky-canvas" id="dreamSkyCanvas">
+                <!-- Dreams will appear as floating stars -->
+            </div>
+
+            <p class="dream-empty-message" id="dreamEmptyMessage">
+                The sky awaits your dreams 🌟
+            </p>
+        </div>
+
+        <div class="stars-background"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         5️⃣ CALM OCEAN 🌊
+         ═══════════════════════════════════════════════════════ -->
+    <section id="calmOcean" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content calm-content">
+            <h1 class="section-title">Calm Ocean 🌊</h1>
+            
+            <div class="breathing-container">
+                <div class="breathing-circle" id="breathingCircle">
+                    <span class="breathing-text" id="breathingText">Breathe</span>
+                </div>
+                <p class="breathing-instruction" id="breathingInstruction">
+                    Follow the circle. Breathe slowly.
+                </p>
+            </div>
+
+            <div class="calm-affirmations">
+                <p class="affirmation fade-in" style="animation-delay: 1s;">I am present</p>
+                <p class="affirmation fade-in" style="animation-delay: 2s;">I am calm</p>
+                <p class="affirmation fade-in" style="animation-delay: 3s;">I am at peace</p>
+                <p class="affirmation fade-in" style="animation-delay: 4s;">Everything is okay</p>
+            </div>
+
+            <button class="secondary-btn" onclick="startBreathing()">
+                Start Breathing Exercise
+            </button>
+        </div>
+
+        <div class="ocean-waves">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         6️⃣ FUN CORNER 🎈
+         ═══════════════════════════════════════════════════════ -->
+    <section id="funCorner" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content fun-content">
+            <h1 class="section-title">Fun Corner 🎈</h1>
+            <p class="section-subtitle">Games & lighthearted moments just for you</p>
+
+            <!-- Compliment Generator -->
+            <div class="fun-widget compliment-widget">
+                <h3>✨ Daily Compliment Generator</h3>
+                <div class="compliment-display" id="complimentDisplay">
+                    Click the button for a compliment ✨
+                </div>
+                <button class="primary-btn" onclick="generateCompliment()">
+                    Give Me a Compliment 💝
+                </button>
+            </div>
+
+            <!-- Memory Match Game -->
+            <div class="fun-widget memory-game-widget">
+                <h3>💕 Heart Match Game</h3>
+                <p>Find all the matching pairs!</p>
+                <div class="game-stats">
+                    <span>Moves: <strong id="moveCount">0</strong></span>
+                    <span>Matches: <strong id="matchCount">0/8</strong></span>
+                </div>
+                <div class="memory-grid" id="memoryGrid"></div>
+                <button class="secondary-btn" onclick="resetMemoryGame()">New Game</button>
+            </div>
+
+            <!-- Tic Tac Toe -->
+            <div class="fun-widget tictactoe-widget">
+                <h3>❤️ Tic Tac Toe</h3>
+                <p id="tictactoeStatus">Your turn! (❤️)</p>
+                <div class="tictactoe-grid" id="tictactoeGrid"></div>
+                <button class="secondary-btn" onclick="resetTicTacToe()">New Game</button>
+            </div>
+
+            <!-- Lucky Fortune Cookie -->
+            <div class="fun-widget fortune-widget">
+                <h3>🥠 Lucky Fortune Cookie</h3>
+                <p>Click the cookie for your fortune!</p>
+                <div class="fortune-cookie" id="fortuneCookie" onclick="crackFortune()">
+                    <div class="cookie-icon">🥠</div>
+                </div>
+                <div class="fortune-message" id="fortuneMessage"></div>
+            </div>
+
+            <!-- Love Calculator -->
+            <div class="fun-widget love-calculator-widget">
+                <h3>💖 Love Percentage Calculator</h3>
+                <p>Just for fun! Enter two names:</p>
+                <div class="love-calc-inputs">
+                    <input type="text" id="name1" placeholder="Your name" maxlength="20">
+                    <span class="love-heart">💕</span>
+                    <input type="text" id="name2" placeholder="Their name" maxlength="20">
+                </div>
+                <button class="primary-btn" onclick="calculateLove()">Calculate Love!</button>
+                <div class="love-result" id="loveResult"></div>
+            </div>
+
+            <!-- Emoji Click Field -->
+            <div class="fun-widget emoji-widget">
+                <h3>🌸 Emoji Garden</h3>
+                <p>Click anywhere in the box to plant emojis!</p>
+                <div class="emoji-field" id="emojiField"></div>
+                <button class="secondary-btn" onclick="clearEmojis()">Clear Garden</button>
+            </div>
+
+            <!-- Gratitude Counter -->
+            <div class="fun-widget gratitude-widget">
+                <h3>💖 Gratitude Counter</h3>
+                <p>Click the heart each time you feel grateful today</p>
+                <div class="gratitude-counter">
+                    <button class="gratitude-heart" onclick="incrementGratitude()">
+                        <span class="heart-icon">💖</span>
+                    </button>
+                    <div class="gratitude-count" id="gratitudeCount">0</div>
+                    <p class="gratitude-label">moments of gratitude</p>
+                </div>
+            </div>
+
+            <!-- Color Mood Painter -->
+            <div class="fun-widget color-widget">
+                <h3>🎨 Mood Color Painter</h3>
+                <p>Choose a color that matches your mood right now</p>
+                <div class="color-palette">
+                    <button class="color-btn" style="background: #FFB6C1" onclick="paintMood('pink', 'Loving & Soft')"></button>
+                    <button class="color-btn" style="background: #FFD700" onclick="paintMood('gold', 'Bright & Hopeful')"></button>
+                    <button class="color-btn" style="background: #87CEEB" onclick="paintMood('blue', 'Calm & Peaceful')"></button>
+                    <button class="color-btn" style="background: #98FB98" onclick="paintMood('green', 'Fresh & Growing')"></button>
+                    <button class="color-btn" style="background: #DDA0DD" onclick="paintMood('purple', 'Creative & Dreamy')"></button>
+                    <button class="color-btn" style="background: #FFB347" onclick="paintMood('orange', 'Energetic & Warm')"></button>
+                </div>
+                <div class="mood-color-result" id="moodColorResult"></div>
+            </div>
+
+            <!-- Virtual Hug Counter -->
+            <div class="fun-widget hug-widget">
+                <h3>🤗 Virtual Hug Sender</h3>
+                <p>Send yourself some love!</p>
+                <div class="hug-container">
+                    <button class="hug-button" onclick="sendHug()">
+                        <span class="hug-emoji">🤗</span>
+                        <span class="hug-text">Send a Hug</span>
+                    </button>
+                    <div class="hug-count-display">
+                        Hugs sent today: <strong id="hugCount">0</strong>
+                    </div>
+                </div>
+                <div class="hug-animation" id="hugAnimation"></div>
+            </div>
+
+        </div>
+
+        <div class="confetti-container" id="funConfetti"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         7️⃣ SECRET VAULT 🔒
+         ═══════════════════════════════════════════════════════ -->
+    <section id="secretVault" class="world-section detail-section">
+        <button class="back-button" onclick="goToWorldMap()">← Back to World</button>
+        
+        <div class="section-content vault-content">
+            <div class="vault-confetti" id="vaultConfetti"></div>
+            
+            <h1 class="section-title">Secret Vault 🔓</h1>
+            <p class="section-subtitle">You found the hidden treasure</p>
+
+            <div class="secret-letter">
+                <div class="letter-header">
+                    <span class="letter-seal">💌</span>
+                    <h2>A Letter Just For You</h2>
+                </div>
+
+                <div class="letter-body">
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 0.5s;">
+                        My Dearest,
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 1s;">
+                        If you're reading this, it means you've explored this entire world I created for you. 
+                        You visited every corner, every section, every little piece I put together with care.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 1.5s;">
+                        I want you to know something: You are extraordinary. Not in the loud, attention-seeking way, 
+                        but in the quiet, profound way that actually matters. The way you see the world, the way you 
+                        care about things, the way you make ordinary moments feel special.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 2s;">
+                        This digital world is my way of saying: you deserve beautiful things. You deserve spaces that 
+                        celebrate you. You deserve to be reminded, every single day, that you matter.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 2.5s;">
+                        I hope this place becomes somewhere you return to when you need comfort, when you want to dream, 
+                        when you just need to feel seen and understood. Because you are seen. You are understood. 
+                        You are deeply, profoundly cherished.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 3s;">
+                        Thank you for being you. Thank you for existing in this world. Thank you for taking the time 
+                        to explore this small universe I built just for you.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 3.5s;">
+                        Keep dreaming. Keep growing. Keep being the amazing person you are.
+                    </p>
+                    <p class="letter-paragraph fade-in-letter" style="animation-delay: 4s;">
+                        With all my love,<br>
+                        <span style="font-style: italic; margin-top: 1rem; display: block;">
+                            Someone who believes in you more than you know
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <button class="primary-btn" onclick="goToWorldMap()" style="margin-top: 3rem;">
+                Return to the World 🌍
+            </button>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         MEMORY MODAL
+         ═══════════════════════════════════════════════════════ -->
+    <div class="modal" id="memoryModal">
+        <div class="modal-overlay" onclick="closeMemoryModal()"></div>
+        <div class="modal-content memory-modal-content">
+            <button class="modal-close" onclick="closeMemoryModal()">×</button>
+            <h2 id="memoryModalTitle"></h2>
+            <p class="memory-modal-date" id="memoryModalDate"></p>
+            <div id="memoryModalBody"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         DREAM DETAIL MODAL
+         ═══════════════════════════════════════════════════════ -->
+    <div class="modal" id="dreamModal">
+        <div class="modal-overlay" onclick="closeDreamModal()"></div>
+        <div class="modal-content dream-modal-content">
+            <button class="modal-close" onclick="closeDreamModal()">×</button>
+            <h2>✨ Your Dream</h2>
+            <p id="dreamModalText"></p>
+            <p class="dream-modal-date" id="dreamModalDate"></p>
+            <button class="secondary-btn" onclick="deleteDreamFromModal()">Delete Dream</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements (Hidden) -->
+    <audio id="ambientSound" loop>
+        <!-- Placeholder for ambient sound -->
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
